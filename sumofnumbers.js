@@ -1,14 +1,13 @@
-
-
 function sumFor(data) {
-  let answer = 0;
-  data.forEach(function (num) {
-    answer += num;
+  let ans = 0;
+  data.forEach(function (number) {
+    ans += number;
   });
-  return answer;
+  return ans;
 }
 
-function sumWhile(list) {
+function sumWhile(input) {
+  const list = input.slice();
   let answer = 0;
   while (list.length !== 0) {
     answer += list.pop();
@@ -16,16 +15,22 @@ function sumWhile(list) {
   return answer;
 }
 
-function sumRecursion(data, tail) {
-  if (data.length === 0) return tail;
-  let answer = tail;
-  const partition = data;
-  answer += partition.pop();
-  return answer + sumRecursion(partition, tail);
+function sumRecursion(info) {
+  const data = info.slice();
+  if (data.length === 0) {
+    return 0;
+  }
+  const x = data.shift();
+  return x + sumRecursion(data);
 }
 
 function sumTheSimpleWay(data) {
-  return _.reduce(data, function (memo) {
-    return memo + data;
+  return _.reduce(data, function (memo, number) {
+    return memo + number;
   });
 }
+const z = [1, 2, 3, 4, 5];
+console.log(sumFor(z));
+console.log(sumWhile(z));
+console.log(sumRecursion(z));
+console.log(sumTheSimpleWay(z));
